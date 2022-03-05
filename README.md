@@ -1,2 +1,2 @@
-# BaseSystem
-The NukaOS BaseSystem.
+# CoreSystem
+The NukaOS CoreSystem.
