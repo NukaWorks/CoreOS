@@ -1,2 +1,2 @@
-# BaseSystem
-The NukaOS BaseSystem.
+# CoreOS
+NukaWorks's CoreOS for PowerOS platform.
