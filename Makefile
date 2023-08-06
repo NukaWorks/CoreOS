@@ -1,6 +1,5 @@
 .ONESHELL:
 
-export CFLAGS="-fpermissive"
 TOOLCHAIN_ROOT := $(shell pwd)/toolchain
 LFS_TGT := $(shell uname -m)-lfs-linux-gnu
 BINUTILS_BUILD_DIR := binutils-gdb/build
