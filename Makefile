@@ -18,9 +18,6 @@ gcc:
 	cd build \
 	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers \ \
 	make -j$(shell nproc) && make install \
-	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd \
-	echo 'int main(){}' | $(LFS_TGT)-gcc -xc - readelf -l a.out | grep ld-linux \
-	rm -v a.out \
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 linux-headers:
