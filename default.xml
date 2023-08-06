@@ -4,196 +4,181 @@
     <remote
         name="gnu"
         fetch="https://git.savannah.gnu.org/git/"
+        revision="master"
     />
 
     <remote
         name="file"
         fetch="https://github.com/file/"
+        revision="master"
     />
 
     <remote
         name="ncurses"
         fetch="https://github.com/ThomasDickey/"
+        revision="master"
     />
 
     <remote
         name="python"
         fetch="https://github.com/python/"
+        revision="master"
     />
 
     <remote
         name="xz"
         fetch="https://github.com/xz-mirror/"
+        revision="master"
     />
 
     <remote
         name="binutils"
         fetch="https://sourceware.org/git/"
+        revision="master"
     />
 
     <remote
         name="gcc"
         fetch="https://github.com/gcc-mirror/"
+        revision="master"
     />
 
     <remote
         name="perl"
         fetch="https://github.com/Perl/"
+        revision="master"
     />
 
     <project
         name="m4.git"
         path="m4"
         remote="gnu"
-        revision="v1.4.9"
     />
 
     <project
         name="ncurses-snapshots"
         path="ncurses"
         remote="ncurses"
-        revision="master"
     />
 
     <project
         name="bash.git"
         path="bash"
         remote="gnu"
-        revision="bash-5.2"
     />
 
     <project
         name="coreutils.git"
         path="coreutils"
         remote="gnu"
-        revision="v9.3"
     />
 
     <project
         name="diffutils.git"
         path="diffutils"
         remote="gnu"
-        revision="v3.10"
     />
 
     <project
         name="file"
         remote="file"
-        revision="FILE5_45"
     />
 
     <project
         name="findutils.git"
         path="findutils"
         remote="gnu"
-        revision="v4.5.14"
     />
 
     <project
         name="gawk.git"
         path="gawk"
         remote="gnu"
-        revision="gawk-5.2.2"
     />
 
     <project
         name="grep.git"
         path="grep"
         remote="gnu"
-        revision="v3.11"
     />
 
     <project
         name="gzip.git"
         path="gzip"
         remote="gnu"
-        revision="v1.12"
     />
 
     <project
         name="make.git"
         path="make"
         remote="gnu"
-        revision="4.4.1"
     />
 
     <project
         name="patch.git"
         path="patch"
         remote="gnu"
-        revision="v2.7.6"
     />
 
     <project
         name="sed.git"
         path="sed"
         remote="gnu"
-        revision="v4.9"
     />
 
     <project
         name="tar.git"
         path="tar"
         remote="gnu"
-        revision="v1.35"
     />
 
     <project
         name="xz"
         remote="xz"
-        revision="v5.4.0"
     />
 
     <project
         name="binutils-gdb"
         remote="binutils"
-        revision="binutils-2.41-release"
     />
 
     <project
         name="gcc"
         remote="gcc"
-        revision="releases/gcc-13.2.0"
     />
 
     <project
         name="gettext.git"
         path="gettext"
         remote="gnu"
-        revision="v0.22"
     />
 
     <project
         name="bison.git"
         path="bison"
         remote="gnu"
-        revision="v3.8.2"
     />
 
     <project
         name="perl5"
         remote="perl"
-        revision="v5.39.5"
     />
 
     <project
         name="cpython"
         remote="python"
-        revision="v3.11.4"
     />
 
     <project
         name="texinfo.git"
         path="texinfo"
         remote="gnu"
-        revision="texinfo-7.0.3"
     />
 
     <project
         name="util-linux.git"
         path="util-linux"
         remote="gnu"
-        revision="v2.39.1"
     />
 
 </manifest>
