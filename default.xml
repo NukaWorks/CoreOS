@@ -184,6 +184,13 @@
     />
 
     <project
+        name="glibc"
+        remote="binutils"
+        revision="refs/tags/glibc-2.38"
+        clone-depth="10"
+    />
+
+    <project
         name="gcc"
         remote="gcc"
         revision="refs/tags/releases/gcc-13.2.0"
