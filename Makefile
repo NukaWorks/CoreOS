@@ -36,7 +36,7 @@ glibc:
 	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT)/ install
 
 libstdc:
-	cd gcc && rmdir -rf build && mkdir build && cd build && \
+	cd gcc && rm -rf build && mkdir build && cd build && \
 	../libstdc++-v3/configure \
 	--host=$(LFS_TGT) \
 	--build=$(../config.guess) \
