@@ -13,7 +13,9 @@ binutils:
 	make -j$(shell nproc) && make install
 
 gcc:
-	cd gcc ; mkdir -p build ; cd build
+	cd gcc
+	mkdir -p build
+	cd build
 	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers \
 	make -j$(shell nproc) && make install
 	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd &&
