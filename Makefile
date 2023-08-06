@@ -7,20 +7,20 @@ GLIBC_BUILD_DIR := glibc/build
 all: binutils gcc linux-headers glibc libstdc
 
 binutils:
-	mkdir -p $(TOOLCHAIN_ROOT)
+	mkdir -p $(TOOLCHAIN_ROOT) \
 	cd binutils-gdb && rm -rf build && mkdir build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
 
 gcc:
-	cd gcc
-	mkdir -p build
-	cd build
-	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers \
-	make -j$(shell nproc) && make install
-	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd &&
-	echo 'int main(){}' | $(LFS_TGT)-gcc -xc - readelf -l a.out | grep ld-linux
-	rm -v a.out
+	cd gcc \
+	mkdir -p build \
+	cd build \
+	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers \ \
+	make -j$(shell nproc) && make install \
+	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd \
+	echo 'int main(){}' | $(LFS_TGT)-gcc -xc - readelf -l a.out | grep ld-linux \
+	rm -v a.out \
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 linux-headers:
