@@ -25,9 +25,9 @@ gcc:
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 linux-headers:
-	cd linux && make mrproper && make headers -j$(shell nproc)
-	cd linux/usr/include && find . -type f ! -name '*.h' -delete
-	cp -rv linux/usr/include $(TOOLCHAIN_ROOT)/usr
+	cd linux && make mrproper && make headers -j$(shell nproc) && \
+	find usr/include -type f ! -name '*.h' -delete && \
+	cp -rv usr/include $(TOOLCHAIN_ROOT)/usr
 
 glibc:
 	cd glibc && rm -rf build && mkdir build && cd build && \
