@@ -4,21 +4,13 @@ BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
 GLIBC_BUILD_DIR := glibc/build
 
-all: binutils gcc linux-headers glibc libstdc
+all: binutils gccbuild linux-headers glibc libstdc
 
 binutils:
 	mkdir -p $(TOOLCHAIN_ROOT) \
 	cd binutils-gdb && rm -rf build && mkdir build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
-
-gcc:
-	cd gcc && \
-	mkdir -p build && \
-	cd build && \
-	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
-	make -j$(shell nproc) && make install && \
-	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 linux-headers:
 	cd linux && make mrproper && make headers -j$(shell nproc) && \
@@ -30,6 +22,14 @@ glibc:
 	echo "rootsbindir=/usr/sbin" > configparms && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/include libc_cv_slibdir=/usr/lib && \
 	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT)/ install
+
+gccbuild:
+	cd gcc && \
+	mkdir -p build && \
+	cd build && \
+	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
+	make -j$(shell nproc) && make install && \
+	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 libstdc:
 	cd gcc && rm -rf build && mkdir build && cd build && \
