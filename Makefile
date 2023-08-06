@@ -7,7 +7,7 @@ GLIBC_BUILD_DIR := glibc/build
 all: binutils gccbuild linux-headers glibc libstdc
 
 binutils:
-	mkdir -p $(TOOLCHAIN_ROOT) \
+	mkdir -p $(TOOLCHAIN_ROOT) && \
 	cd binutils-gdb && mkdir build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
