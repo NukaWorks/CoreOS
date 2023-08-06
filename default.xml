@@ -223,4 +223,9 @@
         clone-depth="10"
     />
 
+    <copyfile
+        src="makeToolchain.sh"
+        dest="./"
+    />
+
 </manifest>
