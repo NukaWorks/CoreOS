@@ -8,7 +8,7 @@ all: binutils gccbuild linux-headers glibc libstdc
 
 binutils:
 	mkdir -p $(TOOLCHAIN_ROOT) \
-	cd binutils-gdb && rm -rf build && mkdir build && cd build && \
+	cd binutils-gdb && mkdir build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
 
@@ -18,7 +18,7 @@ linux-headers:
 	cp -rv usr/include $(TOOLCHAIN_ROOT)/usr
 
 glibc:
-	cd glibc && rm -rf build && mkdir build && cd build && \
+	cd glibc && mkdir build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/include libc_cv_slibdir=/usr/lib && \
 	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT)/ install
