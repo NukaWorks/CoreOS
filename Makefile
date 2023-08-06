@@ -44,6 +44,7 @@ libstdc:
 	--disable-multilib \
 	--disable-nls \
 	--disable-libstdcxx-pch \
+	-fpermissive \
 	--with-gxx-include-dir=$(LFS_TGT)/include/c++/12.2.0 \
 	&& make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT) install
 
