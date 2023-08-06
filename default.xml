@@ -224,7 +224,7 @@
     />
 
     <copyfile
-        src="./repo/manifests/makeToolchain.sh"
+        src="makeToolchain.sh"
         dest="./"
     />
 
