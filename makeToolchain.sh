@@ -7,7 +7,14 @@ echo "Building binutils (1/2)..."
 cd binutils-gdb
 mkdir -p build && cd build
 
-../configure --prefix=$TOOLCHAIN_ROOT --target=$LFS_TGT --disable-nls --disable-werror && make -j$(nproc) && make install
+../configure  \
+   --prefix=$TOOLCHAIN_ROOT \
+   --target=$LFS_TGT \
+   --with-sysroot=$TOOLCHAIN_ROOT \
+   --disable-nls \
+   --enable-gprofng=no \
+   --disable-werror \
+    && make -j$(nproc) && make install
 
 cd ../../
 
