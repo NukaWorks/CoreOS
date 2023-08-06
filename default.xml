@@ -1,140 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
+    <remote
+        name="gnu"
+        fetch="https://git.savannah.gnu.org/git/"
+    />
+
+    <remote
+        name="file"
+        fetch="https://github.com/file/file.git"
+    />
+
+    <remote
+        name="ncurses"
+        fetch="https://github.com/ThomasDickey/ncurses-snapshots.git"
+    />
+
+    <remote
+        name="python"
+        fetch="https://github.com/python/cpython.git"
+    />
+
+    <remote
+        name="xz"
+        fetch="https://github.com/xz-mirror/xz.git"
+    />
+
+    <remote
+        name="binutils"
+        fetch="https://sourceware.org/git/binutils-gdb.git"
+    />
+
+    <remote
+        name="gcc"
+        fetch="https://github.com/gcc-mirror/gcc.git"
+    />
+
+    <remote
+        name="perl"
+        fetch="https://github.com/Perl/perl5.git"
+    />
+
     <project
         name="m4"
-        remote="http://git.savannah.gnu.org/git/m4.git"
+        remote="gnu"
         revision="v1.4.9"
     />
 
     <project
         name="ncurses"
-        remote="https://github.com/ThomasDickey/ncurses-snapshots.git"
+        remote="ncurses"
     />
 
     <project
         name="bash"
-        remote="http://git.savannah.gnu.org/git/bash.git"
+        remote="gnu"
         revision="bash-5.2"
     />
 
     <project
         name="coreutils"
-        remote="https://git.savannah.gnu.org/git/coreutils.git"
+        remote="gnu"
         revision="v9.3"
     />
 
     <project
         name="diffutils"
-        remote="https://git.savannah.gnu.org/git/diffutils.git"
+        remote="gnu"
         revision="v3.10"
     />
 
     <project
         name="file"
-        remote="https://github.com/file/file.git"
+        remote="file"
         revision="FILE5_45"
     />
 
     <project
         name="findutils"
-        remote="https://git.savannah.gnu.org/git/findutils.git"
+        remote="gnu"
         revision="v4.5.14"
     />
 
     <project
         name="gawk"
-        remote="https://git.savannah.gnu.org/git/gawk.git"
+        remote="gnu"
         revision="gawk-5.2.2"
     />
 
     <project
         name="grep"
-        remote="http://git.savannah.gnu.org/git/grep.git"
+        remote="gnu"
         revision="v3.11"
     />
 
     <project
         name="gzip"
-        remote="https://git.savannah.gnu.org/git/gzip.git"
+        remote="gnu"
         revision="v1.12"
     />
 
     <project
         name="make"
-        remote="https://git.savannah.gnu.org/git/make.git"
+        remote="gnu"
         revision="4.4.1"
     />
 
     <project
         name="patch"
-        remote="https://git.savannah.gnu.org/git/patch.git"
+        remote="gnu"
         revision="v2.7.6"
     />
 
     <project
         name="sed"
-        remote="https://git.savannah.gnu.org/git/sed.git"
+        remote="gnu"
         revision="v4.9"
     />
 
     <project
         name="tar"
-        remote="https://git.savannah.gnu.org/git/tar.git"
+        remote="gnu"
         revision="v1.35"
     />
 
     <project
         name="xz"
-        remote="https://github.com/xz-mirror/xz.git"
+        remote="xz"
         revision="v5.4.0"
     />
 
     <project
         name="binutils"
-        remote="https://sourceware.org/git/binutils-gdb.git"
+        remote="binutils"
         revision="binutils-2.41-release"
     />
 
     <project
         name="gcc"
-        remote="https://github.com/gcc-mirror/gcc.git"
+        remote="gcc"
         revision="releases/gcc-13.2.0"
     />
 
     <project
         name="gettext"
-        remote="https://git.savannah.gnu.org/git/gettext.git"
+        remote="gnu"
         revision="v0.22"
     />
 
     <project
         name="bison"
-        remote="https://git.savannah.gnu.org/git/bison.git"
+        remote="gnu"
         revision="v3.8.2"
     />
 
     <project
         name="perl"
-        remote="https://github.com/Perl/perl5.git"
+        remote="perl"
         revision="v5.39.5"
     />
 
     <project
         name="python"
-        remote="hhttps://github.com/python/cpython.git"
+        remote="python"
         revision="v3.11.4"
     />
 
     <project
         name="texinfo"
-        remote="https://git.savannah.gnu.org/git/texinfo.git"
+        remote="gnu"
         revision="texinfo-7.0.3"
     />
 
     <project
         name="util-linux"
-        remote="https://github.com/util-linux/util-linux.git"
+        remote="gnu"
         revision="v2.39.1"
     />
 
