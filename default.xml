@@ -147,7 +147,7 @@
     <project
         name="binutils-gdb"
         remote="binutils"
-        revision="refs/tags/binutils-2.41-release"
+        revision="refs/tags/binutils-2_41-release"
     />
 
     <project
