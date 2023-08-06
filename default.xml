@@ -41,11 +41,16 @@
         fetch="https://github.com/Perl/"
     />
 
+    <remote
+        name="util-linux"
+        fetch="https://github.com/util-linux/"
+    />
+
     <project
         name="m4.git"
         path="m4"
         remote="gnu"
-        revision="refs/tags/v1.4.9"
+        revision="refs/tags/v1.4.19"
         clone-depth="10"
     />
 
@@ -192,7 +197,7 @@
     <project
         name="perl5"
         remote="perl"
-        revision="refs/tags/v5.39.5"
+        revision="refs/tags/v5.39.1"
         clone-depth="10"
     />
 
@@ -212,9 +217,8 @@
     />
 
     <project
-        name="util-linux.git"
-        path="util-linux"
-        remote="gnu"
+        name="util-linux"
+        remote="util-linux"
         revision="refs/tags/v2.39.1"
         clone-depth="10"
     />
