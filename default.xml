@@ -229,7 +229,7 @@
     <project
         name="gcc"
         remote="gcc"
-        revision="refs/tags/releases/gcc-13.2.0"
+        revision="refs/tags/releases/gcc-12.2.0"
         clone-depth="10"
     />
 
