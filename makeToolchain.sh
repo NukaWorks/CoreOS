@@ -4,7 +4,7 @@ export TOOLCHAIN_ROOT=./toolchain/
 export LFS_TGT=(uname -m)-lfs-linux-gnu
 
 echo "Building binutils (1/2)..."
-cd binutils
+cd binutils-gdb
 mkdir -p build && cd build
 
 ../configure --prefix=$TOOLCHAIN_ROOT --target=$LFS_TGT --disable-nls --disable-werror && make -j$(nproc) && make install
