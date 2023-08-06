@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Default repository -->
+
+    <remote  name="nukaworks_github"
+             fetch="https://github.com/NukaWorks"
+             revision="master" />
+
+    <default remote="nukaworks_github"
+             revision="master" />
+
+    <!-- Core Dependencies -->
+
+    <project name="CoreBSD" />
+    <project name="CorePackages" />
+    <project name="CoreSystem" />
+</manifest>
