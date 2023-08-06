@@ -8,65 +8,70 @@
 
     <remote
         name="file"
-        fetch="https://github.com/file/file.git"
+        fetch="https://github.com/file/"
     />
 
     <remote
         name="ncurses"
-        fetch="https://github.com/ThomasDickey/ncurses-snapshots.git"
+        fetch="https://github.com/ThomasDickey/"
     />
 
     <remote
         name="python"
-        fetch="https://github.com/python/cpython.git"
+        fetch="https://github.com/python/"
     />
 
     <remote
         name="xz"
-        fetch="https://github.com/xz-mirror/xz.git"
+        fetch="https://github.com/xz-mirror/"
     />
 
     <remote
         name="binutils"
-        fetch="https://sourceware.org/git/binutils-gdb.git"
+        fetch="https://sourceware.org/git/"
     />
 
     <remote
         name="gcc"
-        fetch="https://github.com/gcc-mirror/gcc.git"
+        fetch="https://github.com/gcc-mirror/"
     />
 
     <remote
         name="perl"
-        fetch="https://github.com/Perl/perl5.git"
+        fetch="https://github.com/Perl/"
     />
 
     <project
-        name="m4"
+        name="m4.git"
+        path="m4"
         remote="gnu"
         revision="v1.4.9"
     />
 
     <project
-        name="ncurses"
+        name="ncurses-snapshots"
+        path="ncurses"
         remote="ncurses"
         revision="master"
     />
 
     <project
-        name="bash"
+        name="bash.git"
+        path="bash"
         remote="gnu"
         revision="bash-5.2"
     />
 
     <project
-        name="coreutils"
+        name="coreutils.git"
+        path="coreutils"
         remote="gnu"
         revision="v9.3"
     />
 
     <project
-        name="diffutils"
+        name="diffutils.git"
+        path="diffutils"
         remote="gnu"
         revision="v3.10"
     />
@@ -78,49 +83,57 @@
     />
 
     <project
-        name="findutils"
+        name="findutils.git"
+        path="findutils"
         remote="gnu"
         revision="v4.5.14"
     />
 
     <project
-        name="gawk"
+        name="gawk.git"
+        path="gawk"
         remote="gnu"
         revision="gawk-5.2.2"
     />
 
     <project
-        name="grep"
+        name="grep.git"
+        path="grep"
         remote="gnu"
         revision="v3.11"
     />
 
     <project
-        name="gzip"
+        name="gzip.git"
+        path="gzip"
         remote="gnu"
         revision="v1.12"
     />
 
     <project
-        name="make"
+        name="make.git"
+        path="make"
         remote="gnu"
         revision="4.4.1"
     />
 
     <project
-        name="patch"
+        name="patch.git"
+        path="patch"
         remote="gnu"
         revision="v2.7.6"
     />
 
     <project
-        name="sed"
+        name="sed.git"
+        path="sed"
         remote="gnu"
         revision="v4.9"
     />
 
     <project
-        name="tar"
+        name="tar.git"
+        path="tar"
         remote="gnu"
         revision="v1.35"
     />
@@ -132,7 +145,7 @@
     />
 
     <project
-        name="binutils"
+        name="binutils-gdb"
         remote="binutils"
         revision="binutils-2.41-release"
     />
@@ -144,37 +157,41 @@
     />
 
     <project
-        name="gettext"
+        name="gettext.git"
+        path="gettext"
         remote="gnu"
         revision="v0.22"
     />
 
     <project
-        name="bison"
+        name="bison.git"
+        path="bison"
         remote="gnu"
         revision="v3.8.2"
     />
 
     <project
-        name="perl"
+        name="perl5"
         remote="perl"
         revision="v5.39.5"
     />
 
     <project
-        name="python"
+        name="cpython"
         remote="python"
         revision="v3.11.4"
     />
 
     <project
-        name="texinfo"
+        name="texinfo.git"
+        path="texinfo"
         remote="gnu"
         revision="texinfo-7.0.3"
     />
 
     <project
-        name="util-linux"
+        name="util-linux.git"
+        path="util-linux"
         remote="gnu"
         revision="v2.39.1"
     />
