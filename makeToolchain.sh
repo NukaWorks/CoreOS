@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p toolchain/
 export TOOLCHAIN_ROOT=./toolchain/
-export LFS_TGT=(uname -m)-lfs-linux-gnu
+export LFS_TGT=$(uname -m)-lfs-linux-gnu
 
 echo "Building binutils (1/2)..."
 cd binutils-gdb
