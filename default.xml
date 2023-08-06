@@ -7,6 +7,12 @@
     />
 
     <remote
+        name="linux"
+        fetch="https://github.com/torvalds/"
+        revision="refs/tags/v6.4"
+    />
+
+    <remote
         name="file"
         fetch="https://github.com/file/"
     />
@@ -44,6 +50,12 @@
     <remote
         name="util-linux"
         fetch="https://github.com/util-linux/"
+    />
+
+    <project
+        name="linux"
+        remote="linux"
+        clone-depth="10"
     />
 
     <project
