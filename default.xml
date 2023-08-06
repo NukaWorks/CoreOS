@@ -50,6 +50,7 @@
     <project
         name="ncurses"
         remote="ncurses"
+        revision="master"
     />
 
     <project
