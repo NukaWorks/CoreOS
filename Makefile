@@ -9,7 +9,11 @@ all: prep binutils gccbuild linux-headers glibc libstdc
 
 prep:
 	mkdir -pv $(TOOLCHAIN_ROOT)
-	mkdir -pv $(TOOLCHAIN_ROOT)/(etc,var) $(TOOLCHAIN_ROOT)/usr/(bin,lib,sbin)
+	mkdir -pv $(TOOLCHAIN_ROOT)/etc
+	mkdir -pv $(TOOLCHAIN_ROOT)/var
+	mkdir -pv $(TOOLCHAIN_ROOT)/bin
+	mkdir -pv $(TOOLCHAIN_ROOT)/sbin
+	mkdir -pv $(TOOLCHAIN_ROOT)/lib
 	for i in bin lib sbin; do ln -sv usr/$i $(TOOLCHAIN_ROOT)/$$i; done
 	if [ `uname -m` = 'x86_64' ]; then mkdir -pv $(TOOLCHAIN_ROOT)/lib64; fi
 
