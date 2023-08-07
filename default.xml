@@ -222,7 +222,7 @@
     <project
         name="glibc"
         remote="binutils"
-        revision="refs/tags/glibc-2.38"
+        revision="refs/tags/glibc-2.37"
         clone-depth="10"
     />
 
