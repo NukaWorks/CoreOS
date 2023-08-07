@@ -243,7 +243,7 @@
     />
 
     <copyfile
-        src="makeToolchain.sh"
+        src="Makefile"
         dest="./"
     />
 
