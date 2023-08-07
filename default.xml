@@ -2,6 +2,11 @@
 <manifest>
 
     <remote
+        name="nukaworks"
+        path="https://github.com/NukaWorks/"
+    />
+
+    <remote
         name="gnu"
         fetch="https://git.savannah.gnu.org/git/"
     />
@@ -51,6 +56,17 @@
         name="util-linux"
         fetch="https://github.com/util-linux/"
     />
+
+    <project
+        name="CoreOS"
+        path="CoreOS.manifest"
+        clone-depth="10">
+
+        <linkfile
+                src="Makefile"
+                dest="./Makefile"
+        />
+    </project>
 
     <project
         name="linux"
@@ -240,11 +256,6 @@
         remote="util-linux"
         revision="refs/tags/v2.39.1"
         clone-depth="10"
-    />
-
-    <linkfile
-        src="Makefile"
-        dest="./Makefile"
     />
 
 </manifest>
