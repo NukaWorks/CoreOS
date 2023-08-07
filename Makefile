@@ -46,7 +46,8 @@ gccbuild:
 	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
 	make -j$(shell nproc) && make install && \
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders && \
-	cd .. && cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $($(LFS_TGT)-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+	cd .. && cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $$($(LFS_TGT)-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+
 
 libstdc:
 	cd gcc && rm -rf build && mkdir build && cd build && \
