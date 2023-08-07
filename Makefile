@@ -51,7 +51,7 @@ gccbuild:
 	mkdir -p gcc/build && \
 	cd gcc/build && \
 	../configure --target=$(TARGET) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(ROOT_PROJ) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
-	make -j$(shell nproc) && make install && \
+	make -j$(shell nproc) && make install
 
 
 libstdc:
