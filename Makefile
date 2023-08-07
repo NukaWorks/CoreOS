@@ -35,7 +35,7 @@ glibcbuild:
 	cd glibc && mkdir -p build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
 	../configure --prefix=$(TOOLCHAIN_ROOT)/usr --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/usr/include libc_cv_slibdir=/usr/lib && \
-	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT) install
+	make -j$(shell nproc) && make install
 	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd
 
 gccbuild:
