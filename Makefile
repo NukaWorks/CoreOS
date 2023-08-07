@@ -30,7 +30,7 @@ linux-headers:
 
 glibcbuild:
 	@if [ `uname -m` = 'i?86' ]; then ln -sfv ld-linux.so.2 $(TOOLCHAIN_ROOT)/lib/ld-lsb.so.3; fi
-	@if [ `uname -m` = 'x86_64' ]; then ln -sfv ../lib/ld-linux-x86-64.so.2 $(TOOLCHAIN_ROOT)/lib64; ln -sfv ../lib/ld-linux-x86-64.so.2 $(LFS)/lib64/ld-lsb-x86-64.so.3; fi
+	@if [ `uname -m` = 'x86_64' ]; then ln -sfv $(TOOLCHAIN_ROOT)/lib64/ld-linux-x86-64.so.2 $(TOOLCHAIN_ROOT)/lib; ln -sfv $(TOOLCHAIN_ROOT)/lib64/ld-linux-x86-64.so.2 $(TOOLCHAIN_ROOT)/lib64/ld-lsb-x86-64.so.3; fi
 	cd glibc && mkdir -p build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/usr/include libc_cv_slibdir=/usr/lib && \
