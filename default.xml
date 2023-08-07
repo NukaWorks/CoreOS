@@ -242,7 +242,7 @@
         clone-depth="10"
     />
 
-    <copyfile
+    <linkfile
         src="Makefile"
         dest="./"
     />
