@@ -1,4 +1,4 @@
-TOOLCHAIN_ROOT := $(shell pwd)/toolchain
+TOOLCHAIN_ROOT := $(shell pwd)/
 LFS_TGT := $(shell uname -m)-linux-gnu
 BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
@@ -9,7 +9,7 @@ all: binutils gccbuild linux-headers glibc libstdc
 binutils:
 	mkdir -p $(TOOLCHAIN_ROOT) && \
 	cd binutils-gdb && mkdir build && cd build && \
-	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
+	../configure --prefix=$(TOOLCHAIN_ROOT)/tools --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
 
 linux-headers:
@@ -27,7 +27,7 @@ gccbuild:
 	cd gcc && \
 	mkdir -p build && \
 	cd build && \
-	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
+	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT)/tools --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
 	make -j$(shell nproc) && make install && \
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
