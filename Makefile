@@ -55,6 +55,7 @@ libstdc:
 	--build=$(../config.guess) \
 	--prefix=/usr \
 	--disable-multilib \
+	--with-headers \
 	--disable-nls \
 	--disable-libstdcxx-pch \
 	--with-gxx-include-dir=$(LFS_TGT)/include/c++/12.2.0 \
