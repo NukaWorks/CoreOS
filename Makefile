@@ -6,6 +6,12 @@ GLIBC_BUILD_DIR := glibc/build
 
 all: binutils gccbuild linux-headers glibc libstdc
 
+prep:
+	mkdir -pv $(TOOLCHAIN_ROOT)/{etc,var} $(TOOLCHAIN_ROOT)/usr/{bin,lib,sbin}
+	for i in bin lib sbin; do ln -sv usr/$i $(TOOLCHAIN_ROOT)/$$i; done
+	if [ `uname -m` = 'x86_64' ]; then mkdir -pv $(TOOLCHAIN_ROOT)/lib64; fi
+	mkdir -pv $(TOOLCHAIN_ROOT)/tools
+
 binutils:
 	mkdir -p $(TOOLCHAIN_ROOT) && \
 	cd binutils-gdb && mkdir build && cd build && \
@@ -25,6 +31,12 @@ glibc:
 
 gccbuild:
 	cd gcc && \
+	wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz && \
+	wget https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz && \
+	wget https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.0.tar.xz && \
+	tar -xf mpfr-4.2.0.tar.xz mv -v mpfr-4.2.0 mpfr && \
+    tar -xf gmp-6.2.1.tar.xz && mv -v gmp-6.2.1 gmp && \
+    tar -xf mpc-1.3.1.tar.gz && mv -v mpc-1.3.1 mpc && \
 	mkdir -p build && \
 	cd build && \
 	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT)/tools --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
