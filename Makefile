@@ -1,4 +1,5 @@
-TOOLCHAIN_ROOT := $(shell pwd)/
+ROOT_PROJ = $(shell pwd)/
+TOOLCHAIN_ROOT := $(shell pwd)/tools
 LFS_TGT := $(shell uname -m)-coreos-linux-gnu
 BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
@@ -7,7 +8,7 @@ GLIBC_BUILD_DIR := glibc/build
 all: prep binutils gccbuild linux-headers glibc libstdc
 
 prep:
-	mkdir -pv $(TOOLCHAIN_ROOT)/tools
+	mkdir -pv $(TOOLCHAIN_ROOT)
 	mkdir -pv $(TOOLCHAIN_ROOT)/{etc,var} $(TOOLCHAIN_ROOT)/usr/{bin,lib,sbin}
 	for i in bin lib sbin; do ln -sv usr/$i $(TOOLCHAIN_ROOT)/$$i; done
 	if [ `uname -m` = 'x86_64' ]; then mkdir -pv $(TOOLCHAIN_ROOT)/lib64; fi
@@ -15,7 +16,7 @@ prep:
 binutils:
 	mkdir -p $(TOOLCHAIN_ROOT) && \
 	cd binutils-gdb && mkdir build && cd build && \
-	../configure --prefix=$(TOOLCHAIN_ROOT)/tools --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
+	../configure --prefix=$(TOOLCHAIN_ROOT)/ --target=$(LFS_TGT) --with-sysroot=$(TOOLCHAIN_ROOT) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
 
 linux-headers:
@@ -39,9 +40,9 @@ gccbuild:
 	@if [ -f mpc-1.3.1.tar.gz ]; then tar -xf mpc-1.3.1.tar.gz && mv -v mpc-1.3.1 mpc; else echo "mpc-1.3.1.tar.gz not found."; fi && \
 	mkdir -p build && \
 	cd build && \
-	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT)/tools --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
+	../configure --target=$(LFS_TGT) --prefix=$(TOOLCHAIN_ROOT) --disable-nls --disable-shared --disable-multilib --disable-threads --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --with-glibc-version=2.37 --with-sysroot=$(TOOLCHAIN_ROOT) --with-newlib --enable-default-pie --enable-default-ssp --enable-languages=c,c++ --without-headers && \
 	make -j$(shell nproc) && make install && \
-	$(TOOLCHAIN_ROOT)/tools/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
+	$(TOOLCHAIN_ROOT)/libexec/gcc/$(LFS_TGT)/12.2.0/install-tools/mkheaders
 
 libstdc:
 	cd gcc && rm -rf build && mkdir build && cd build && \
