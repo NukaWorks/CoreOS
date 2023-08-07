@@ -14,6 +14,7 @@ prep:
 	mkdir -pv $(TOOLCHAIN_ROOT)/bin
 	mkdir -pv $(TOOLCHAIN_ROOT)/sbin
 	mkdir -pv $(TOOLCHAIN_ROOT)/lib
+	mkdir -pv $(TOOLCHAIN_ROOT)/usr/bin
 	if [ `uname -m` = 'x86_64' ]; then mkdir -pv $(TOOLCHAIN_ROOT)/lib64; fi
 
 binutils:
