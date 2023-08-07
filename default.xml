@@ -61,6 +61,7 @@
         name="CoreOS"
         path="CoreOS.manifest"
         remote="nukaworks"
+        revision="master"
         clone-depth="10">
 
         <linkfile
