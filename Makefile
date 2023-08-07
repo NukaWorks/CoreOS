@@ -34,7 +34,7 @@ gccbuild:
 	wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz && \
 	wget https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz && \
 	wget https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.0.tar.xz && \
-	tar -xf mpfr-4.2.0.tar.xz mv -v mpfr-4.2.0 mpfr && \
+	tar -xf mpfr-4.2.0.tar.xz && mv -v mpfr-4.2.0 mpfr && \
     tar -xf gmp-6.2.1.tar.xz && mv -v gmp-6.2.1 gmp && \
     tar -xf mpc-1.3.1.tar.gz && mv -v mpc-1.3.1 mpc && \
 	mkdir -p build && \
