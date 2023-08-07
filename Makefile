@@ -66,5 +66,8 @@ libstdc:
 	--with-gxx-include-dir=/tools/$(TARGET)/include/c++/12.2.0 \
 	&& make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 
+clean-static:
+	rm -v $(ROOT_PROJ)/usr/lib/lib{stdc++,stdc++fs,supc++}.la
+
 clean:
 	rm -rf $(BINUTILS_BUILD_DIR) $(GCC_BUILD_DIR) $(GLIBC_BUILD_DIR)
