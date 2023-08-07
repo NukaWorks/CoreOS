@@ -31,7 +31,7 @@ linux-headers:
 glibcbuild:
 	cd glibc && mkdir -p build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
-	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/include libc_cv_slibdir=/usr/lib && \
+	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/usr/include libc_cv_slibdir=/usr/lib && \
 	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT)/ install
 
 gccbuild:
@@ -56,7 +56,6 @@ libstdc:
 	--build=$(../config.guess) \
 	--prefix=/usr \
 	--disable-multilib \
-	--with-headers \
 	--disable-nls \
 	--disable-libstdcxx-pch \
 	--with-gxx-include-dir=$(LFS_TGT)/include/c++/12.2.0 \
