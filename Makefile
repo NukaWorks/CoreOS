@@ -5,7 +5,7 @@ BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
 GLIBC_BUILD_DIR := glibc/build
 
-all: prep binutils gccbuild linux-headers glibc libstdc
+all: prep binutils gccbuild linux-headers glibcbuild libstdc
 
 prep:
 	mkdir -pv $(TOOLCHAIN_ROOT)
@@ -27,7 +27,7 @@ linux-headers:
 	find usr/include -type f ! -name '*.h' -delete && \
 	cp -rv usr/include $(TOOLCHAIN_ROOT)/usr
 
-glibc:
+glibcbuild:
 	cd glibc && mkdir build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/include libc_cv_slibdir=/usr/lib && \
