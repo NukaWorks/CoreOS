@@ -49,7 +49,7 @@ gccbuild:
 
 
 libstdc:
-	cd gcc && rm -rf build && mkdir build && cd build && \
+	cd gcc && rm -rf build && mkdir -p build && cd build && \
 	../libstdc++-v3/configure \
 	--host=$(LFS_TGT) \
 	--build=$(../config.guess) \
