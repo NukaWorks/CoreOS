@@ -1,5 +1,5 @@
 ROOT_PROJ = $(shell pwd)/
-TOOLCHAIN_ROOT := ./tools
+TOOLCHAIN_ROOT := $(shell readlink -f tools)
 LFS_TGT := $(shell uname -m)-coreos-linux-gnu
 BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
