@@ -25,6 +25,7 @@ binutils:
 linux-headers:
 	cd linux && make mrproper && make headers -j$(shell nproc) && \
 	find usr/include -type f ! -name '*.h' -delete && \
+	mkdir -p $(TOOLCHAIN_ROOT)/usr/include
 	cp -rv usr/include $(TOOLCHAIN_ROOT)/usr/include
 
 glibcbuild:
