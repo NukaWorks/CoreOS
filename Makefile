@@ -1,5 +1,5 @@
 TOOLCHAIN_ROOT := $(shell pwd)/
-LFS_TGT := $(shell uname -m)coreos-linux-gnu
+LFS_TGT := $(shell uname -m)-coreos-linux-gnu
 BINUTILS_BUILD_DIR := binutils-gdb/build
 GCC_BUILD_DIR := gcc/build
 GLIBC_BUILD_DIR := glibc/build
