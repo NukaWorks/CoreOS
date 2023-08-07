@@ -3,7 +3,7 @@
 
     <remote
         name="nukaworks"
-        path="https://github.com/NukaWorks/"
+        fetch="https://github.com/NukaWorks/"
     />
 
     <remote
