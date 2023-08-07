@@ -67,7 +67,9 @@ libstdc:
 	&& make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 
 clean-static:
-	rm -v $(ROOT_PROJ)/usr/lib/lib{stdc++,stdc++fs,supc++}.la
+	rm -v $(ROOT_PROJ)/usr/lib/libstdc++.la
+	rm -v $(ROOT_PROJ)/usr/lib/libstdc++fs.la
+	rm -v $(ROOT_PROJ)/usr/lib/libsupc++.la
 
 clean:
 	rm -rf $(BINUTILS_BUILD_DIR) $(GCC_BUILD_DIR) $(GLIBC_BUILD_DIR)
