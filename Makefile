@@ -33,8 +33,9 @@ glibcbuild:
 	ln -sfv $(TOOLCHAIN_ROOT)/lib/ld-linux-x86-64.so.2 $(TOOLCHAIN_ROOT)/lib64/ld-lsb-x86-64.so.3
 	cd glibc && mkdir -p build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
-	../configure --prefix=$(TOOLCHAIN_ROOT) --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/usr/include libc_cv_slibdir=/usr/lib && \
+	../configure --prefix=$(TOOLCHAIN_ROOT)/usr --host=$(LFS_TGT) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(TOOLCHAIN_ROOT)/usr/include libc_cv_slibdir=/usr/lib && \
 	make -j$(shell nproc) && make DESTDIR=$(TOOLCHAIN_ROOT)/ install
+	sed '/RTLDLIST=/s@/usr@@g' -i $(TOOLCHAIN_ROOT)/usr/bin/ldd
 
 gccbuild:
 	@if [ ! -f gmp-6.2.1.tar.xz ]; then wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz; else echo "gmp-6.2.1.tar.xz already exists."; fi
