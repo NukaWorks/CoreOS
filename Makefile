@@ -81,7 +81,7 @@ build_m4:
 	cd m4 && \
 	autoconf && \
 	./configure --prefix=/usr \
-	--host=$(TARGET)
+	--host=$(TARGET) \
 	--build=$$(build-aux/config.guess) && \
 	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 
