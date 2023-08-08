@@ -8,7 +8,7 @@ GCC_BUILD_DIR := gcc/build
 GLIBC_BUILD_DIR := glibc/build
 
 # Tasks need to be executed in the right order
-all: prep binutils_p1 gccbuild_p1 linux-headers glibcbuild libstdc
+all: prep build_binutils_p1 build_gcc_p1 linux-headers build_glibc build_libstdc build_m4
 
 #We initialize the build environment here
 prep:
@@ -23,7 +23,7 @@ prep:
 	if [ `uname -m` = 'x86_64' ]; then mkdir -pv $(ROOT_PROJ)/lib64; fi
 
 # Binutils part 1
-binutils_p1:
+build_binutils_p1:
 	mkdir -p $(TOOLCHAIN_ROOT) && \
 	cd binutils-gdb && mkdir build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(TARGET) --with-sysroot=$(ROOT_PROJ) --disable-nls --enable-gprofng=no --disable-werror && \
@@ -37,7 +37,7 @@ linux-headers:
 	cp -rv usr/include $(ROOT_PROJ)/usr
 
 # GNU's Libc
-glibcbuild:
+build_glibc:
 	ln -sfv ../lib/ld-linux-x86-64.so.2 $(ROOT_PROJ)/lib64
 	ln -sfv ../lib/ld-linux-x86-64.so.2 $(ROOT_PROJ)/lib64/ld-lsb-x86-64.so.3
 	cd glibc && mkdir -p build && cd build && \
@@ -48,7 +48,7 @@ glibcbuild:
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(TARGET)/12.2.0/install-tools/mkheaders
 
 # The compiler, part 1
-gccbuild_p1:
+build_gcc_p1:
 	@if [ ! -f gmp-6.2.1.tar.xz ]; then wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz; else echo "gmp-6.2.1.tar.xz already exists."; fi
 	@if [ ! -f mpc-1.3.1.tar.gz ]; then wget https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz; else echo "mpc-1.3.1.tar.gz already exists."; fi
 	@if [ ! -f mpfr-4.2.0.tar.xz ]; then wget https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.0.tar.xz; else echo "mpfr-4.2.0.tar.xz already exists."; fi
@@ -62,7 +62,7 @@ gccbuild_p1:
 	make -j$(shell nproc) && make install
 
 # The GNU C Standard Library
-libstdc:
+build_libstdc:
 	cd gcc && rm -rf build && mkdir -p build && cd build && \
 	../libstdc++-v3/configure \
 	--host=$(TARGET) \
@@ -76,6 +76,13 @@ libstdc:
  	rm -v $(ROOT_PROJ)/usr/lib/libstdc++.la && \
 	rm -v $(ROOT_PROJ)/usr/lib/libstdc++fs.la && \
 	rm -v $(ROOT_PROJ)/usr/lib/libsupc++.la
+
+build_m4:
+	cd m4 && mkdir -p build && cd build && \
+	../configure --prefix=/usr \
+	--host=$(TARGET)
+	--build=$$(build-aux/config.guess) && \
+	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 
 clean:
 	rm -rf $(BINUTILS_BUILD_DIR) $(GCC_BUILD_DIR) $(GLIBC_BUILD_DIR)
