@@ -78,8 +78,9 @@ build_libstdc:
 	rm -v $(ROOT_PROJ)/usr/lib/libsupc++.la
 
 build_m4:
-	cd m4 && mkdir -p build && cd build && \
-	../configure --prefix=/usr \
+	cd m4 && \
+	autoconf && \
+	./configure --prefix=/usr \
 	--host=$(TARGET)
 	--build=$$(build-aux/config.guess) && \
 	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
