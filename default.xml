@@ -78,14 +78,6 @@
     />
 
     <project
-        name="m4.git"
-        path="m4"
-        remote="gnu"
-        revision="refs/tags/v1.4.19"
-        clone-depth="10"
-    />
-
-    <project
         name="ncurses-snapshots"
         path="ncurses"
         remote="ncurses"

@@ -78,6 +78,8 @@ build_libstdc:
 	rm -v $(ROOT_PROJ)/usr/lib/libsupc++.la
 
 build_m4:
+	@if [ ! -f m4-1.4.19.tar.xz ]; then wget http://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz; else "echo m4-1.4.19.tar.xz already exists."; fi
+	@if [ -f m4-1.4.19.tar.xz ] && [ ! -d m4 ]; then tar -xf m4-1.4.19.tar.xz && mv -v m4-1.4.19 m4; fi
 	cd m4 && \
 	autoconf && \
 	./configure --prefix=/usr \
