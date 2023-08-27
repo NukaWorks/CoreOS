@@ -8,7 +8,7 @@ GCC_BUILD_DIR := gcc/build
 GLIBC_BUILD_DIR := glibc/build
 
 # Tasks need to be executed in the right order
-all: prep build_binutils_p1 build_gcc_p1 linux-headers build_glibc build_libstdc build_m4
+all: prep build_binutils_p1 build_gcc_p1 linux-headers build_glibc build_libstdc build_m4 build_ncurses build_bash build_coreutils build_diffutils build_file
 
 #We initialize the build environment here
 prep:
@@ -25,7 +25,7 @@ prep:
 # Binutils part 1
 build_binutils_p1:
 	mkdir -p $(TOOLCHAIN_ROOT) && \
-	cd binutils-gdb && mkdir build && cd build && \
+	cd binutils-gdb && mkdir -p build && cd build && \
 	../configure --prefix=$(TOOLCHAIN_ROOT) --target=$(TARGET) --with-sysroot=$(ROOT_PROJ) --disable-nls --enable-gprofng=no --disable-werror && \
 	make -j$(shell nproc) && make install
 
@@ -78,7 +78,7 @@ build_libstdc:
 	rm -v $(ROOT_PROJ)/usr/lib/libsupc++.la
 
 build_m4:
-	@if [ ! -f m4-1.4.19.tar.xz ]; then wget http://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz; else "echo m4-1.4.19.tar.xz already exists."; fi
+	@if [ ! -f m4-1.4.19.tar.xz ]; then wget http://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz; fi
 	@if [ -f m4-1.4.19.tar.xz ] && [ ! -d m4 ]; then tar -xf m4-1.4.19.tar.xz && mv -v m4-1.4.19 m4; fi
 	cd m4 && \
 	autoconf && \
@@ -87,5 +87,79 @@ build_m4:
 	--build=$$(build-aux/config.guess) && \
 	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 
+build_ncurses:
+	cd ncurses && mkdir -p build && \
+	cd build && \
+		../configure && \
+		make -C include && \
+		make -C progs tic && \
+	cd .. && \
+	./configure --prefix=/usr                \
+            --host=$(TARGET)              \
+            --build=$(./config.guess)    \
+            --mandir=/usr/share/man      \
+            --with-manpage-format=normal \
+            --with-shared                \
+            --without-normal             \
+            --with-cxx-shared            \
+            --without-debug              \
+            --without-ada                \
+            --disable-stripping          \
+            --enable-widec				&& \
+			make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) TIC_PATH=$(pwd)/build/progs/tic install && \
+			echo "INPUT(-lncursesw)" > $(ROOT_PROJ)/usr/lib/libncurses.so
+
+build_bash:
+	cd bash && mkdir -p build && \
+	cd build && ../configure --prefix=/usr                      \
+            --build=$(shell support/config.guess) \
+            --host=$(TARGET)                    \
+            --without-bash-malloc			&& \
+	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install && \
+	ln -sv bash $(ROOT_PROJ)/bin/sh
+
+build_coreutils:
+	cd coreutils && ./bootstrap && mkdir -p build && \
+	cd build && ../configure --prefix=/usr                     \
+            --host=$(TARGET)                   \
+            --build=$(build-aux/config.guess) \
+            --enable-install-program=hostname \
+            --enable-no-install-program=kill,uptime	&& \
+	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install && \
+	mv -v $(ROOT_PROJ)/usr/bin/chroot              $(ROOT_PROJ)/usr/sbin && \
+	mkdir -pv $(ROOT_PROJ)/usr/share/man/man8 && \
+	mv -v $(ROOT_PROJ)/usr/share/man/man1/chroot.1 $(ROOT_PROJ)/usr/share/man/man8/chroot.8 && \
+	sed -i 's/"1"/"8"/'                    $(ROOT_PROJ)/usr/share/man/man8/chroot.8 
+
+build_diffutils:
+	cd diffutils && ./bootstrap && mkdir -p build && \
+	cd build && ../configure --prefix=/usr                     \
+            --host=$(TARGET)                   && \
+	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
+
+
+build_file:
+	cd file && mkdir -p build && \
+	autoreconf -f -i && \
+	cd build && ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib && \
+	make -j$(shell nproc) && ../configure --prefix=/usr --host=$(TARGET) --build=$(./config.guess) && \
+	make FILE_COMPILE=$(shell pwd)/file && make DESTDIR=$(ROOT_PROJ) install && rm -v $(ROOT_PROJ)/usr/lib/libmagic.la
+
+build_findutils:
+	cd findutils && \
+	./bootstrap && \
+	mkdir -p build && cd build && ../configure --prefix=/usr                   \
+            --localstatedir=/var/lib/locate \
+            --host=$(TARGET)                 \
+			--prefix=/usr \
+            --build=$(build-aux/config.guess) && \
+	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
+
 clean:
-	rm -rf $(BINUTILS_BUILD_DIR) $(GCC_BUILD_DIR) $(GLIBC_BUILD_DIR)
+	rm -rf $(BINUTILS_BUILD_DIR) $(GCC_BUILD_DIR) $(GLIBC_BUILD_DIR) && \
+	rm -rf linux/ && \
+	repo sync
+
