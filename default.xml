@@ -117,10 +117,10 @@
     />
 
     <project
-        name="findutils.git"
+        name="findutils"
         path="findutils"
         remote="gnu"
-        revision="refs/tags/v4.5.14"
+        revision="refs/tags/v4.9.0"
         clone-depth="10"
     />
 
