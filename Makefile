@@ -42,7 +42,7 @@ build_glibc:
 	ln -sfv ../lib/ld-linux-x86-64.so.2 $(ROOT_PROJ)/lib64/ld-lsb-x86-64.so.3
 	cd glibc && mkdir -p build && cd build && \
 	echo "rootsbindir=/usr/sbin" > configparms && \
-	../configure --prefix=/usr --host=$(TARGET) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(ROOT_PROJ)/usr/include libc_cv_slibdir=/usr/lib && \
+	../configure --prefix=/usr  --without-selinux --host=$(TARGET) --build=$$(../scripts/config.guess) --enable-kernel=3.2 --with-headers=$(ROOT_PROJ)/usr/include libc_cv_slibdir=/usr/lib && \
 	make -j$(shell nproc) && make DESTDIR=$(ROOT_PROJ) install
 	sed '/RTLDLIST=/s@/usr@@g' -i $(ROOT_PROJ)/usr/bin/ldd
 	$(TOOLCHAIN_ROOT)/libexec/gcc/$(TARGET)/12.2.0/install-tools/mkheaders
